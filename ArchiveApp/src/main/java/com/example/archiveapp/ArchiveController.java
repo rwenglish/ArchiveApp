@@ -1,9 +1,13 @@
 package com.example.archiveapp;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -12,9 +16,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.ChoiceBox;
 
+import java.io.File;
+import java.nio.file.Files;
+import javafx.stage.FileChooser;
+import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static java.awt.SystemColor.window;
+import static java.util.Collections.addAll;
 
 public class ArchiveController implements Initializable {
     @FXML
@@ -30,14 +41,27 @@ public class ArchiveController implements Initializable {
     @FXML
     private ChoiceBox<String> bottleType;
 
+    //array containing the choices for the choicebox "bottleType"
     private String[] bottleTypes = {"Medicine", "Soda", "Beer", "Jar", "Toiletry", "Food/Condiment", "Wine", "Whiskey/Liquor"};
 
-
+    @FXML
+    private Button entryButton;
 
     Stage stage;
-    //Quit function
     @FXML
-    private void quit(ActionEvent event){
+    String filename;
+    public MenuItem saveFile;
+
+    //saving functionality (currently broken)
+
+    public void save(ActionEvent event){
+        File file = new File(filename);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save file");
+        fileChooser.showSaveDialog(stage);
+    }
+    //quit function
+    public void quit(ActionEvent event){
         Alert quitAlert = new Alert(Alert.AlertType.CONFIRMATION);
         quitAlert.setTitle("Quit?");
         quitAlert.setHeaderText("You're about to quit");
@@ -62,11 +86,32 @@ public class ArchiveController implements Initializable {
             stage.close();
         }
     }
+    @FXML
+        private ListView<String> bottleList;
 
+        String [] entryList = {"Warner's Safe Cure", "Straight Side Script Pepsi", "Straight Side Coke",
+                "Straight Side Block Pepsi", "Cobalt Poison", "Rochester Brewing Co", "Bovox",
+        "Dr King's Consumption Cure", "NuGrape Embossed Grape Style", "1915 Coke High Point", "J Hostetter's Bitters",
+            "Rumford Chemical Co", "Henry K Wampole", "Roseneck Brewing Co", "Virginia Brewing Co", "Dr Kilmer's Swamp",
+        "Starboys Pepsi Product", "Seville Packing Preserves", "Warranted Flash", "Kiss Kola", "Thomasville Bottling Co",
+        "Horrmann Brewing Co", "Grand Union Tea Co"};
+        String currentBottle;
 
+    //choice box functionality
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bottleType.getItems().addAll(bottleTypes);
+        bottleList.getItems().addAll(entryList);
+
+       // bottleList.getSelectionModel().selectionModeProperty().addListener(new ChangeListener<String>() {
+       //     @Override
+         //   public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
+
+            //}
+       // });
+
     }
+
+
 }
 
