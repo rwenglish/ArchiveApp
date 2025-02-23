@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -52,12 +53,12 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
+            <MenuItem fx:id="openDesc" mnemonicParsing="false" onAction="#open" text="Open…" />
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#save" text="Save" />
+            <MenuItem fx:id="bottSaveAs" mnemonicParsing="false" onAction="#saveAs" text="Save As…" />
             <MenuItem mnemonicParsing="false" text="Export" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences…" />
@@ -97,17 +98,19 @@
     </MenuBar>
     <AnchorPane id="MainAnchorPane" fx:id="mainPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="439.0" prefWidth="693.0" VBox.vgrow="ALWAYS">
       <children>
-            <ListView prefHeight="541.0" prefWidth="149.0" />
-            <ChoiceBox fx:id="bottleType" layoutX="154.0" layoutY="115.0" prefHeight="15.0" prefWidth="125.0" />
+            <ListView fx:id="bottleList" editable="true" prefHeight="541.0" prefWidth="149.0" />
+            <ChoiceBox fx:id="bottleType" layoutX="154.0" layoutY="115.0" prefHeight="25.0" prefWidth="149.0" />
             <Label fx:id="typeLabel" layoutX="157.0" layoutY="98.0" text="Bottle Type" />
-            <TextArea layoutX="157.0" layoutY="184.0" prefHeight="365.0" prefWidth="538.0" />
+            <TextArea fx:id="bottleDesc" layoutX="157.0" layoutY="184.0" prefHeight="365.0" prefWidth="538.0" />
             <TextField layoutX="155.0" layoutY="31.0" />
-            <ScrollBar layoutX="133.0" orientation="VERTICAL" prefHeight="541.0" prefWidth="15.0" />
+            <ScrollBar fx:id="scrollBarOne" layoutX="133.0" orientation="VERTICAL" prefHeight="541.0" prefWidth="15.0" />
             <Label layoutX="155.0" layoutY="14.0" text="Name" />
             <Label layoutX="157.0" layoutY="166.0" prefHeight="17.0" prefWidth="73.0" text="Description" />
             <TextField layoutX="155.0" layoutY="73.0" />
             <Label layoutX="155.0" layoutY="56.0" prefHeight="17.0" prefWidth="101.0" text="Estimated Value" />
-            <Label layoutX="421.0" layoutY="14.0" prefHeight="17.0" prefWidth="85.0" text="Image" />
+            <Button fx:id="entryButton" layoutX="626.0" layoutY="153.0" mnemonicParsing="false" text="Add Entry" />
+            <ChoiceBox fx:id="bottleAge" layoutX="363.0" layoutY="31.0" prefHeight="25.0" prefWidth="139.0" />
+            <Label layoutX="363.0" layoutY="14.0" text="Bottle Age" />
       </children>
     </AnchorPane>
   </children>
